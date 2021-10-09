@@ -29,6 +29,7 @@ public class Main {
 
     var winCondition = new WinCondition(moveValidators);
 
+    var x = 1;
     var gameLogic =
         new GameLogic(
             console, board, boardPrinter, moveValidators, noOtherMoveToJumpPossible, winCondition);
