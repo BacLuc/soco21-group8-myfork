@@ -1,3 +1,3 @@
 # Autodetect text files and normalise their line endings to LF when they are checked into the repository.
 * text=auto
-*.pdf merge=ours
+*.pdf merge=union
