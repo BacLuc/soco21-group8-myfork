@@ -68,4 +68,31 @@ public record Move(Player player, BoardCoordinates start, BoardCoordinates end) 
     }
     throw new IllegalArgumentException("invalid input");
   }
+
+  public Optional<BoardCoordinates> getCoordinatesBetween() {
+    var rowDiff = end.row().ordinal() - start.row().ordinal();
+    var colDiff = end.column().ordinal() - start.column().ordinal();
+
+    if (Math.abs(rowDiff) != 2 || Math.abs(colDiff) != 2) {
+      return Optional.empty();
+    }
+
+    var rows = Row.values();
+    Row rowBetween;
+    if (rowDiff > 0) {
+      rowBetween = rows[start.row().ordinal() + 1];
+    } else {
+      rowBetween = rows[start.row().ordinal() - 1];
+    }
+
+    var columns = Column.values();
+    Column colBetween;
+    if (colDiff > 0) {
+      colBetween = columns[start.column().ordinal() + 1];
+    } else {
+      colBetween = columns[start.column().ordinal() - 1];
+    }
+
+    return Optional.of(new BoardCoordinates(rowBetween, colBetween));
+  }
 }
